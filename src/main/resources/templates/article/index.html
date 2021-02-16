@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Blog Site</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Blog Site</title>
 </head>
 <body>
   <h1>Welcome to My Blog Site!</h1>
   <h3>Check out my articles!</h3>
+  <p>Please use the form below to enter an article:</p>
+  <form th:action="@{/}" method="post">
+    <table>
+      <tr>
+        <td>Title</td>
+        <td><input type="text" th:field="*{article.title}" /></td>
+      </tr>
+      <tr>
+        <td>Author:</td>
+        <td><input type="text" th:field="*{article.author}" /></td>
+      </tr>
+      <tr>
+        <td>Blog Entry:</td>
+        <td><input type="text" th:field="*{article.entry}" /></td>
+      </tr>
+      <tr>
+        <td><button>Submit Article</button></td>
+      </tr>
+    </table>
+  </form>
 </body>
 </html>
