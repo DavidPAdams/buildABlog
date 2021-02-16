@@ -2,11 +2,25 @@ package com.tts.myBlog.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+@Entity
 public class Article {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "article_id")
   private Long id; 
+  
   private String title;
   private String author;
   private String entry;
+  
+  @CreationTimestamp
   private Date createdAt;
   
   public Article() {}
