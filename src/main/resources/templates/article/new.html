@@ -6,11 +6,12 @@
 <link th:replace="article/fragments/headLinks">
 </head>
 <body>
-  <div class="container-fluid">
   <div th:replace="article/fragments/navbar"></div>
+  <div class="container-fluid">
     <p>Please use the form below to enter a new article:</p>
     <form th:action="@{/articles/new}" method="post" class="form-group">
       <div th:replace="article/fragments/formFields"></div>
+      <button class="btn btn-success" type="submit">Say it!</button>
     </form>
   </div>
   <script th:replace="article/fragments/scripts"></script>

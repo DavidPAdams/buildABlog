@@ -6,14 +6,17 @@
 <link th:replace="article/fragments/headLinks">
 </head>
 <body>
-  <div class="container-fluid">
   <div th:replace="article/fragments/navbar"></div>
+  <div class="container-fluid">
     <h1>Welcome to my fabulous blog!</h1>
     <h3>Check out the articles on my blog</h3>
     <div class="list-group">
       <div th:each="article:${articles}">
-        <span th:text="${article.title}"></span> 
-        By: <span th:text="${article.author}"></span>
+        <a th:href="@{/articles/} + ${article.articleId}" 
+          class="list-group-item list-group-item-action">
+          <span th:text="${article.title}"></span> By: 
+          <span th:text="${article.author}"></span>
+        </a>
       </div>
     </div>
   </div>
