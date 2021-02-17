@@ -10,23 +10,7 @@
   <div th:replace="article/fragments/navbar"></div>
     <p>Please use the form below to enter a new article:</p>
     <form th:action="@{/articles/new}" method="post" class="form-group">
-      <table class="table">
-        <tr>
-          <td>Title</td>
-          <td><input class="form-control" type="text" autofocus
-            th:placeholder="${article.title}" th:field="*{article.title}" /></td>
-        </tr>
-        <tr>
-          <td>Author</td>
-          <td><input class="form-control" type="text"
-            th:placeholder="${article.author}" th:field="*{article.author}" /></td>
-        </tr>
-        <tr>
-          <td>Entry</td>
-          <td><textarea rows="10" class="form-control" style="height: 20em;"
-            th:placeholder="${article.entry}" th:field="*{article.entry}"></textarea></td>
-        </tr>
-      </table>
+      <div th:replace="article/fragments/formFields"></div>
     </form>
   </div>
   <script th:replace="article/fragments/scripts"></script>
