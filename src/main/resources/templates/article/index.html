@@ -10,37 +10,17 @@
 </head>
 <body>
   <div class="container-fluid">
-    <h1>Welcome to My Blog Site!</h1>
-    <h3>Check out my articles!</h3>
+    <h1>Welcome to my fabulous blog!</h1>
+    <h3>Check out the articles on my blog</h3>
     <div class="list-group">
       <div th:each="article:${articles}">
-        <div class="list-group-item list-group-item-action">
-          <span th:text="${article.title}"></span> 
-          By: <span th:text="${article.author}"></span>
-          <span th:text="${article.entry}"></span>
-        </div>
+        <span th:text="${article.title}"></span> 
+        By: <span th:text="${article.author}"></span>
       </div>
     </div>
-    <p>Please use the form below to enter an article:</p>
-    <form th:action="@{/}" method="post">
-      <table>
-        <tr>
-          <td>Title</td>
-          <td><input type="text" th:field="*{article.title}" /></td>
-        </tr>
-        <tr>
-          <td>Author:</td>
-          <td><input type="text" th:field="*{article.author}" /></td>
-        </tr>
-        <tr>
-          <td>Blog Entry:</td>
-          <td><input type="text" th:field="*{article.entry}" /></td>
-        </tr>
-        <tr>
-          <td><button>Submit Article</button></td>
-        </tr>
-      </table>
-    </form>
+    <a th:href="@{/articles/new}">
+      <button class="btn btn-sm btn-primary">New Article</button>
+    </a>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
