@@ -10,17 +10,28 @@
 </head>
 <body>
   <div class="container-fluid">
-    <h4>Thank you for your article</h4>
-    <h4>Article:</h4>
-    <p th:text="${article.title}"></p>
-    <p th:text="${article.author}"></p>
-    <p th:text="${article.entry}"></p>
-    <a th:href="@{/articles}">
-      <button class="btn btn-sm btn-primary">Home</button>
-    </a> 
-    <a th:href="@{/articles/new}">
-      <button class="btn btn-sm btn-primary">New Article</button>
-    </a>
+    <h1>The Article Says:</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card text-light bg-info border-danger mb-3">
+          <div class="card-header text-dark" th:object="${article}">
+            <h3 th:text="${article.title}"></h3>
+          </div>
+          <div class="card-body">
+            <strong><span th:text="${article.author}"></span></strong>
+            <p class="card-text" th:text="${article.entry}" />
+          </div>
+          <div class="card-footer">
+            <a th:href="@{/articles}">
+              <button class="btn btn-sm btn-primary">Home</button>
+            </a> 
+            <a th:href="@{/articles/new}">
+              <button class="btn btn-sm btn-primary">New Article</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
