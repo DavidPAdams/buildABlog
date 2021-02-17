@@ -21,11 +21,11 @@
           </div>
           <div class="card-footer">
             <div class="text-right">
-              <a th:href="@{/articles/} + ${article.articleId} + @{/edit}" 
+              <a th:href="@{/articles/} + ${article.id} + @{/edit}" 
                 th:method="get">
                 <button class="btn btn-warning">Edit Article</button>
               </a> 
-              <a th:href="@{/articles/} + ${article.articleId} + @{/delete}"
+              <a th:href="@{/articles/} + ${article.id} + @{/delete}"
                 th:method="delete">
                 <button class="btn btn-danger">Delete Article</button>
               </a>
