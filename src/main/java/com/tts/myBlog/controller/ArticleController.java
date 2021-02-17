@@ -22,6 +22,12 @@ public class ArticleController {
     return "article/index";
   }
   
+  @GetMapping(value = "/articles/new")
+  public String getNewArticleForm(Model model) {
+    model.addAttribute("article", new Article());
+    return "article/new";
+  }
+  
   @PostMapping(value = "/articles/new")
   public String create(Article article, Model model) {
     articleRepository.save(article);
@@ -29,5 +35,4 @@ public class ArticleController {
     return "article/show";
   }
   
-
 }
