@@ -46,4 +46,10 @@ public class ArticleController {
     return "article/show";
   }
   
+  @GetMapping(value = "/articles/{articleId}/delete")
+  public String deleteArticle(@PathVariable("articleId") Long articleId) {
+    articleRepository.deleteById(articleId);
+    return "redirect:/articles";
+  }
+  
 }
