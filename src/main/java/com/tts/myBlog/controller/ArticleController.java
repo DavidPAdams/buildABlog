@@ -52,4 +52,14 @@ public class ArticleController {
     return "redirect:/articles";
   }
   
+  @GetMapping(value = "/articles/{articleId}/edit")
+  public String getEditForm(@PathVariable("articleId") Long articleId, Model model) {
+    Optional<Article> optionArticle = articleRepository.findById(articleId);
+    Article articleFound = optionArticle.get();
+    model.addAttribute("article", articleFound);
+    return "article/edit";
+  }
+  
+  
+  
 }
