@@ -173,7 +173,7 @@ public class Article {
 
 Use annotations to help java do it's job.
 
-To make the Article 'id' set automatically by the system, the annotations @Entity, @Id, @GeneratedValue, @Column are needed. Another useful annotation is @CreationTimestamp for the 'createdAt' field.
+To make the Article 'id' set automatically by the system, the annotations @Entity, @Id, @GeneratedValue, @Column are needed. Another useful annotation is @CreationTimestamp for the 'createdAt' field, along with @UpdateTimestamp for the 'updatedAt' field.
 
 * **@Entity** 
   Use this annotation to designate a plain old Java object (POJO) class as an entity so that JPA will work with it to create a data table.
