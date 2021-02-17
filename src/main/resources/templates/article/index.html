@@ -12,8 +12,8 @@
     <h3>Check out the articles on my blog</h3>
     <div class="list-group">
       <div th:each="article:${articles}">
-        <a th:href="@{/articles/} + ${article.articleId}" 
-          class="list-group-item list-group-item-action">
+        <a th:href="@{/articles/} + ${article.id}" 
+          class="list-group-item list-group-item-action text-primary">
           <span th:text="${article.title}"></span> By: 
           <span th:text="${article.author}"></span>
         </a>
