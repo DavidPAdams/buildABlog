@@ -22,10 +22,12 @@ public class ArticleController {
     return "article/index";
   }
   
-  @PostMapping(value = "/")
+  @PostMapping(value = "/articles/new")
   public String create(Article article, Model model) {
     articleRepository.save(article);
     model.addAttribute("article", article);
     return "article/show";
   }
+  
+
 }
