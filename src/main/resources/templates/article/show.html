@@ -28,6 +28,9 @@
             <a th:href="@{/articles/new}">
               <button class="btn btn-sm btn-primary">New Article</button>
             </a>
+            <a th:href="@{/articles/} + ${article.articleId} + @{/delete}" th:method="delete">
+              <button class="btn btn-danger">Delete</button>
+            </a>
           </div>
         </div>
       </div>
