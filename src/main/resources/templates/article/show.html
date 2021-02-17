@@ -15,6 +15,12 @@
     <p th:text="${article.title}"></p>
     <p th:text="${article.author}"></p>
     <p th:text="${article.entry}"></p>
+    <a th:href="@{/articles}">
+      <button class="btn btn-sm btn-primary">Home</button>
+    </a> 
+    <a th:href="@{/articles/new}">
+      <button class="btn btn-sm btn-primary">New Article</button>
+    </a>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
