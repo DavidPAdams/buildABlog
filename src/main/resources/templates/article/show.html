@@ -13,7 +13,7 @@
     <h1>The Article Says:</h1>
     <div class="row">
       <div class="col-md-12">
-        <div class="card text-light bg-info border-danger mb-3">
+        <div class="card text-primary bg-light border-info mb-3">
           <div class="card-header text-dark" th:object="${article}">
             <h3 th:text="${article.title}"></h3>
           </div>
@@ -22,20 +22,23 @@
             <p class="card-text" th:text="${article.entry}" />
           </div>
           <div class="card-footer">
-            <a th:href="@{/articles}">
-              <button class="btn btn-sm btn-primary">Home</button>
-            </a> 
-            <a th:href="@{/articles/new}">
-              <button class="btn btn-sm btn-success">New Article</button>
-            </a>
-            <a th:href="@{/articles/} + ${article.articleId} + @{/edit}" th:method="get">
-              <button class="btn btn-warning">Edit Article</button>
-            </a>
-            <a th:href="@{/articles/} + ${article.articleId} + @{/delete}" th:method="delete">
-              <button class="btn btn-danger">Delete Article</button>
-            </a>
+            <div class="text-right">
+              <a th:href="@{/articles/} + ${article.articleId} + @{/edit}" 
+                th:method="get">
+                <button class="btn btn-warning">Edit Article</button>
+              </a> 
+              <a th:href="@{/articles/} + ${article.articleId} + @{/delete}"
+                th:method="delete">
+                <button class="btn btn-danger">Delete Article</button>
+              </a>
+            </div>
           </div>
         </div>
+          <a th:href="@{/articles}">
+            <button class="btn btn-sm btn-primary">Home</button>
+          </a> <a th:href="@{/articles/new}">
+            <button class="btn btn-sm btn-success">New Article</button>
+          </a>
       </div>
     </div>
   </div>
