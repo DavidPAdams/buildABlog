@@ -7,6 +7,7 @@
 </head>
 <body>
   <div class="container-fluid">
+  <div th:replace="article/fragments/navbar"></div>
     <p>Please use the form below to enter a new article:</p>
     <form th:action="@{/articles/new}" method="post" class="form-group">
       <table class="table">
