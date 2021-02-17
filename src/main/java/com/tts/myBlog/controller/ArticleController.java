@@ -1,9 +1,12 @@
 package com.tts.myBlog.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tts.myBlog.model.Article;
@@ -32,6 +35,14 @@ public class ArticleController {
   public String create(Article article, Model model) {
     articleRepository.save(article);
     model.addAttribute("article", article);
+    return "article/show";
+  }
+  
+  @GetMapping(value = "/articles/{articleId}")
+  public String showById(@PathVariable("articleId") Long articleId, Model model) {
+    Optional<Article> optionArticle = articleRepository.findById(articleId);
+    Article articleFound = optionArticle.get();
+    model.addAttribute("article", articleFound);
     return "article/show";
   }
   
