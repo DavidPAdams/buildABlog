@@ -15,8 +15,10 @@ public class ArticleController {
   @Autowired
   private ArticleRepository articleRepository;
 
-  @GetMapping(value = "/")
-  public String index(Article article) {
+  @GetMapping(value = {"/", "/articles"})
+  public String index(Article article, Model model) {
+    Iterable<Article> articles = articleRepository.findAll();
+    model.addAttribute("articles", articles);
     return "article/index";
   }
   
