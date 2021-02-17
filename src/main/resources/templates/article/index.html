@@ -12,6 +12,15 @@
   <div class="container-fluid">
     <h1>Welcome to My Blog Site!</h1>
     <h3>Check out my articles!</h3>
+    <div class="list-group">
+      <div th:each="article:${articles}">
+        <div class="list-group-item list-group-item-action">
+          <span th:text="${article.title}"></span> 
+          By: <span th:text="${article.author}"></span>
+          <span th:text="${article.entry}"></span>
+        </div>
+      </div>
+    </div>
     <p>Please use the form below to enter an article:</p>
     <form th:action="@{/}" method="post">
       <table>
