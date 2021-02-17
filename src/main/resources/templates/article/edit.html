@@ -10,7 +10,7 @@
   <div class="container-fluid">
     <h3>Please use the form below to edit an article:</h3>
     <form class="form-group"
-      th:action="@{/articles/} + ${article.articleId} + @{/edit}" th:method="put">
+      th:action="@{/articles/} + ${article.id} + @{/edit}" th:method="put">
       <div th:replace="article/fragments/formFields"></div>
       <button class="btn btn-sm btn-warning" type="submit">Change it</button>
     </form>  
