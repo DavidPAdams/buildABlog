@@ -26,7 +26,7 @@
               <button class="btn btn-sm btn-primary">Home</button>
             </a> 
             <a th:href="@{/articles/new}">
-              <button class="btn btn-sm btn-primary">New Article</button>
+              <button class="btn btn-sm btn-success">New Article</button>
             </a>
             <a th:href="@{/articles/} + ${article.articleId} + @{/edit}" th:method="get">
               <button class="btn btn-warning">Edit Article</button>
