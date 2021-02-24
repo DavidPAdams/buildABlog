@@ -12,11 +12,17 @@
     <h3>Check out the articles on my blog</h3>
     <div class="list-group">
       <div th:each="article:${articles}">
-        <a th:href="@{/articles/} + ${article.id}" 
-          class="list-group-item list-group-item-action text-primary">
-          <span th:text="${article.title}"></span> By: 
-          <span th:text="${article.author}"></span>
-        </a>
+        <div class="row list-group-item">
+          <div class="col-md-8">
+            <a th:href="@{/articles/} + ${article.id}" 
+              class="text-primary">
+              Title: <span th:text="${article.title}"></span>
+            </a>
+          </div>
+          <div class="col-md-4">
+            Written by: <span th:text="${article.author}"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
