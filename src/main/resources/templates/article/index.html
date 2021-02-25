@@ -11,16 +11,40 @@
     <h1>Welcome to my fabulous blog!</h1>
     <h3>Check out the articles on my blog</h3>
     <div class="list-group">
+      <div class="row">
+        <div class="col-md-5 text-center">
+          <strong>Article Title</strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Author</strong>
+        </div>
+        <div class="col-md-2">
+          <strong>Written</strong>
+        </div>
+        <div class="col-md-2">
+          <strong>Edited</strong>
+        </div>
+      </div>
       <div th:each="article:${articles}">
         <div class="list-group-item">
           <div class="row">
-            <div class="col-8">
+            <div class="col-md-5">
               <a th:href="@{/articles/} + ${article.id}" class="text-primary"> 
                 <span th:text="${article.title}"></span>
               </a>
             </div>
-            <div class="col-4">
-              By: <span th:text="${article.author}"></span>
+            <div class="col-md-3">
+              <span th:text="${article.author}"></span>
+            </div>
+            <div class="col-md-2">
+              <small>
+                <span th:text="${#dates.format(article.createdAt, 'dd MMM yyyy, h:mm a')}"></span>
+              </small>
+            </div>
+            <div th:if="${article.updatedAt} != ${article.createdAt}" class="col-md-2">
+              <small>
+                <span th:text="${#dates.format(article.updatedAt, 'dd MMM yyyy, h:mm a')}"></span>
+              </small>
             </div>
           </div>
         </div>
