@@ -990,3 +990,161 @@ Almost done, there is a button that is no longer needed on the index page. That 
 
 What a nice DRY and stylish blog! Congratulate yourself and enjoy. Double check that all of the fragments are referenced on all of the pages, check the styling and adjust if desired, and show it off to your friends and family.
 
+### Continuing on
+
+Alright, while that works fine and dandy, it does have some issues:
+  1. If you look at the articles on the index page, you can't tell which are older and which are the latest and greatest. How about changing the display so it shows a 'written on' date, and likewise an 'last edited on' date if it has been edited?
+  2. Do those dates need to appear on the show and edit pages, too? More edits...
+  3. Why not reorder the articles on the index page so the newest are always at the top of the list.
+  4. Wouldn't it be better to have user accounts with authentication? Sounds like adding security with a 'configuration' layer would be in order.
+  5. It's kind of hokey that you have to enter the author's name manually, it would probably be better if the 'system' could mark the article author based on the logged in user.
+  6. What? No comments from the peanut gallery? So how about adding comments to articles? That's a usual thing for blogs, ya know. To add the ability to comment on the articles would require a full set of resources, and there would be relationships or associations with other resources to consider. Sounds like a fair bit of work, but it's doable.
+  7. Those comments would need to have authors, too. It would be better to have the 'system' mark the comment author based on the logged in user, too.
+  8. The way that datetimes are shown doesn't look very good, probably need to add some code to adjust those.
+  9. Things look like they are going to get a bit more complex, maybe it's time to add a 'service' layer. It could be helpful to extract some logic out of the controller layer to make those methods more 'lean'.
+
+### Update the Index Page
+
+Edit the `index.html` file so that the article title is a clickable link and the author is shown. Make use of bootstrap's column grid layout to change the display.
+```html
+<div class="list-group">
+  <div th:each="article:${articles}">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-md-8">
+          <a th:href="@{/articles/} + ${article.id}" class="text-primary"> 
+            <span th:text="${article.title}"></span>
+          </a>
+        </div>
+        <div class="col-md-4">
+          By: <span th:text="${article.author}"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+Now the `index.html` file has a better setup to add the 'Written:' datetime. Where is this magic 'written on' date coming from? Look in the `Article.java` file and review the fields, there is that special 'createdAt' field that java is managing to date info with the `@CreationTimestamp` annotation. Time to make use of that field and add it to the display for the article list. Modify the `index.html` file:
+```html
+<div class="list-group">
+  <div th:each="article:${articles}">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-md-7">
+          <a th:href="@{/articles/} + ${article.id}" class="text-primary"> 
+            <span th:text="${article.title}"></span>
+          </a>
+        </div>
+        <div class="col-md-3">
+          By: <span th:text="${article.author}"></span>
+        </div>
+        <div class="col-md-2">
+          <small>Written:<span th:text="${article.createdAt}"></span></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+That timestamp looks ugly, and what does it actually mean anyway? By looking documentation on how to format dates in thymeleaf, a basic formatting can be used. Update the `<span th:text="..."` with date formatting:
+```html
+<span th:text="${#dates.format(article.createdAt, 'dd MMM yyyy, h:mm a')}"></span>
+```
+So about that 'Edited:' date... More changes on the `index.html`, change the display to include an 'Edited:' date ONLY IF the article has been edited. To accompish this make use of the thymeleaf 'if' statement. In this case, just check that 'updatedAt' is different from 'createdAt'. Be sure to adjust column sizes.
+```html
+<div class="col-md-5">
+  <a th:href="@{/articles/} + ${article.id}" class="text-primary"> 
+    <span th:text="${article.title}"></span>
+  </a>
+</div>
+<div class="col-md-3">
+  By: <span th:text="${article.author}"></span>
+</div>
+<div class="col-md-2">
+  <small>Written:<span th:text="${#dates.format(article.createdAt, 'dd MMM yyyy, h:mm a')}"></span></small>
+</div>
+<div th:if="${article.updatedAt} != ${article.createdAt}" class="col-md-2">
+  <small>Written:<span th:text="${#dates.format(article.updatedAt, 'dd MMM yyyy, h:mm a')}"></span></small>
+</div>
+``` 
+Looking at the list of articles, it is obvious that it isn't 'DRY' to have 'By:', 'Written:', and 'Edited:' on each article. A row with column headings would fix this problem. More edits on the `index.html` page. add a row with column headings and take out the repeated wording:
+```html
+<div class="list-group">
+  <div class="row">
+    <div class="col-md-5">
+      <strong>Article Title</strong>
+    </div>
+    <div class="col-md-3">
+      <strong>Author</strong>
+    </div>
+    <div class="col-md-2">
+      <strong>Written</strong>
+    </div>
+    <div class="col-md-2">
+      <strong>Edited</strong>
+    </div>
+  </div>
+  <div th:each="article:${articles}">
+```
+That will do for now. The `index.html` file body now looks like:
+```html
+<body>
+  <div th:replace="article/fragments/navbar"></div>
+  <div class="container-fluid">
+    <h1>Welcome to my fabulous blog!</h1>
+    <h3>Check out the articles on my blog</h3>
+    <div class="list-group">
+      <div class="row">
+        <div class="col-md-5 text-center">
+          <strong>Article Title</strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Author</strong>
+        </div>
+        <div class="col-md-2">
+          <strong>Written</strong>
+        </div>
+        <div class="col-md-2">
+          <strong>Edited</strong>
+        </div>
+      </div>
+      <div th:each="article:${articles}">
+        <div class="list-group-item">
+          <div class="row">
+            <div class="col-md-5">
+              <a th:href="@{/articles/} + ${article.id}" class="text-primary"> 
+                <span th:text="${article.title}"></span>
+              </a>
+            </div>
+            <div class="col-md-3">
+              <span th:text="${article.author}"></span>
+            </div>
+            <div class="col-md-2">
+              <small>
+                <span th:text="${#dates.format(article.createdAt, 'dd MMM yyyy, h:mm a')}"></span>
+              </small>
+            </div>
+            <div th:if="${article.updatedAt} != ${article.createdAt}" class="col-md-2">
+              <small>
+                <span th:text="${#dates.format(article.updatedAt, 'dd MMM yyyy, h:mm a')}"></span>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script th:replace="article/fragments/scripts"></script>
+</body>
+```
+
+### Modify the Edit and Show pages, or change that fragment
+
+Hmmm, need to do the same thing on both pages to show written and edited dates. Hang on, perhaps these changes can be added to the `formFields.html` fragment.
+
+
+
+
+
+
+
