@@ -1,6 +1,10 @@
 <div th:fragment="formFields">
   <table class="table">
     <tr>
+      <td>Written: <span th:text="${#dates.format(article.createdAt, 'dd MMM yyyy, h:mm a')}"></span></td>
+      <td th:if="${article.updatedAt} != ${article.createdAt}">Edited: <span th:text="${#dates.format(article.updatedAt, 'dd MMM yyyy, h:mm a')}"></span>
+    </tr>
+    <tr>
       <td>Title</td>
       <td><input class="form-control" type="text" autofocus
         th:placeholder="${article.title}" th:field="*{article.title}" /></td>
