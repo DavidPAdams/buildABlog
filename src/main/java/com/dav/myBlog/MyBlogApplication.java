@@ -1,4 +1,4 @@
-package com.tts.myBlog;
+package com.dav.myBlog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

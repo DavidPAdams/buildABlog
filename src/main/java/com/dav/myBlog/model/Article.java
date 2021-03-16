@@ -1,4 +1,4 @@
-package com.tts.myBlog.model;
+package com.dav.myBlog.model;
 
 import java.util.Date;
 

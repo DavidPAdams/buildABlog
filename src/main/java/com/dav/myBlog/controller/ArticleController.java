@@ -1,4 +1,4 @@
-package com.tts.myBlog.controller;
+package com.dav.myBlog.controller;
 
 import java.util.Optional;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.tts.myBlog.model.Article;
-import com.tts.myBlog.repository.ArticleRepository;
+import com.dav.myBlog.model.Article;
+import com.dav.myBlog.repository.ArticleRepository;
 
 @Controller
 public class ArticleController {

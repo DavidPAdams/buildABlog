@@ -1,12 +1,12 @@
-package com.tts.myBlog.service;
+package com.dav.myBlog.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tts.myBlog.model.Article;
-import com.tts.myBlog.repository.ArticleRepository;
+import com.dav.myBlog.model.Article;
+import com.dav.myBlog.repository.ArticleRepository;
 
 @Service
 public class ArticleService {
